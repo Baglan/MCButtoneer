@@ -12,6 +12,9 @@
 		8696B7FB1D38B8A000C7C82A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8696B7F91D38B8A000C7C82A /* Main.storyboard */; };
 		8696B7FD1D38B8A000C7C82A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8696B7FC1D38B8A000C7C82A /* Assets.xcassets */; };
 		8696B8001D38B8A000C7C82A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8696B7FE1D38B8A000C7C82A /* LaunchScreen.storyboard */; };
+		8696B8091D38B92500C7C82A /* MCButtoneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696B8081D38B92500C7C82A /* MCButtoneer.swift */; };
+		8696B80B1D38E95200C7C82A /* RoundRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696B80A1D38E95200C7C82A /* RoundRectView.swift */; };
+		8696B80D1D38FA5E00C7C82A /* DashedCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696B80C1D38FA5E00C7C82A /* DashedCircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		8696B7FC1D38B8A000C7C82A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8696B7FF1D38B8A000C7C82A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8696B8011D38B8A000C7C82A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8696B8081D38B92500C7C82A /* MCButtoneer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCButtoneer.swift; path = Classes/MCButtoneer.swift; sourceTree = "<group>"; };
+		8696B80A1D38E95200C7C82A /* RoundRectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundRectView.swift; sourceTree = "<group>"; };
+		8696B80C1D38FA5E00C7C82A /* DashedCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedCircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 		8696B7E91D38B8A000C7C82A = {
 			isa = PBXGroup;
 			children = (
+				8696B8071D38B91000C7C82A /* Classes */,
 				8696B7F41D38B8A000C7C82A /* MCButtoneer */,
 				8696B7F31D38B8A000C7C82A /* Products */,
 			);
@@ -54,6 +61,8 @@
 		8696B7F41D38B8A000C7C82A /* MCButtoneer */ = {
 			isa = PBXGroup;
 			children = (
+				8696B80C1D38FA5E00C7C82A /* DashedCircleView.swift */,
+				8696B80A1D38E95200C7C82A /* RoundRectView.swift */,
 				8696B7F51D38B8A000C7C82A /* AppDelegate.swift */,
 				8696B7F71D38B8A000C7C82A /* ViewController.swift */,
 				8696B7F91D38B8A000C7C82A /* Main.storyboard */,
@@ -62,6 +71,14 @@
 				8696B8011D38B8A000C7C82A /* Info.plist */,
 			);
 			path = MCButtoneer;
+			sourceTree = "<group>";
+		};
+		8696B8071D38B91000C7C82A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8696B8081D38B92500C7C82A /* MCButtoneer.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +153,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8696B7F81D38B8A000C7C82A /* ViewController.swift in Sources */,
+				8696B80D1D38FA5E00C7C82A /* DashedCircleView.swift in Sources */,
 				8696B7F61D38B8A000C7C82A /* AppDelegate.swift in Sources */,
+				8696B8091D38B92500C7C82A /* MCButtoneer.swift in Sources */,
+				8696B80B1D38E95200C7C82A /* RoundRectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +275,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobicreators.MCButtoneer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -266,6 +287,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobicreators.MCButtoneer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
