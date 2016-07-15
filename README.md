@@ -21,7 +21,7 @@ let sampleButtoneer = MCButtoneer()
 
 sampleButtoneer.view = sampleButtonView
 
-sampleButtoneer.action = { [unowned self] buttoneer in
+sampleButtoneer.action = { buttoneer in
     ...
 }
 
@@ -36,4 +36,4 @@ sampleButtoneer.onRelease = { buttoneer in
 
 Irresistible, admit it!
 
-(And available under very permissive MIT license!) 
+(And available under a very permissive MIT license!) 
