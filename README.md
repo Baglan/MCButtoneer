@@ -22,19 +22,15 @@ let sampleButtoneer = MCButtoneer()
 sampleButtoneer.view = sampleButtonView
 
 sampleButtoneer.action = { [unowned self] buttoneer in
-    self.clickCount += 1
+    ...
 }
 
 sampleButtoneer.onPress = { buttoneer in
-    if let view = buttoneer.view as? RoundRectView {
-        view.isFilled = true
-    }
+	...
 }
 
 sampleButtoneer.onRelease = { buttoneer in
-    if let view = buttoneer.view as? RoundRectView {
-        view.isFilled = false
-    }
+	...
 }
 ```
 
