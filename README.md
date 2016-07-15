@@ -4,7 +4,7 @@ Make any UIView into a button
 
 ## Motivation
 
-What is an app? Perhaps it can be thought of as a vial of magic that you can ... no no no, we are all civilized people, use this carefully considered UI to just tap tap tap your way to the precious functionality.
+What is an app? Perhaps it can be thought of as a vial of magic that you can ... no no no, we are all civilized people here, use this carefully considered UI to just tap tap tap your way to the precious functionality.
 
 The thing you tap on can be, generally, considered a button. As a part a library of standard components, Apple provides developers with the *UIButton* and siblings that are ... mostly good. But what if you want something crazy with balloons and fireworks? Please step down to *UITapGestureRecognizer* or, perhaps, do something with *touchesBegan/Moved/Ended/Canceled* – most annoying, there should be a better way!
 
