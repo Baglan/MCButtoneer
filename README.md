@@ -36,4 +36,8 @@ sampleButtoneer.onRelease = { buttoneer in
 
 Irresistible, admit it!
 
-(And available under a very permissive MIT license!) 
+(And available under a very permissive MIT license!)
+
+## Installation
+
+Whether you use git sobmodules or jsut copy files, add files from the _Classes_ folder to your project.
