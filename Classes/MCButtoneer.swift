@@ -38,6 +38,18 @@ class MCButtoneer {
         gestureRecognizer.addTarget(self, action: #selector(onGesture(_:)))
     }
     
+    /**
+     Convenience initializer setting both _view_ and _action_
+     
+     - parameter view: view to attach the buttoneer to
+     - parameter action: action on tap
+     */
+    convenience init(view: UIView, action: ((buttoneer: MCButtoneer) -> Void)) {
+        self.init()
+        self.view = view
+        self.action = action
+    }
+    
     /// Function to be executed when the button is pressed
     var onPress: ((buttoneer: MCButtoneer) -> Void)?
     /// Function to be executed when the button is released
