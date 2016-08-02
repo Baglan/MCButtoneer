@@ -43,11 +43,15 @@ class MCButtoneer {
      
      - parameter view: view to attach the buttoneer to
      - parameter action: action on tap
+     
+     **Note:** does not, currently, work!
      */
     convenience init(view: UIView, action: ((buttoneer: MCButtoneer) -> Void)) {
         self.init()
         self.view = view
         self.action = action
+        
+        // TODO: Why doesn't it work?!
     }
     
     /// Function to be executed when the button is pressed
@@ -112,14 +116,14 @@ extension MCButtoneer {
         private let maximumOffset = CGPoint(x: 20, y: 20)
         
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
-            guard let firstTouch = touches.first else { return }
-            initialTouchLocation = firstTouch.locationInView(view)
+            guard let firstTouch = touches.first, let window = view?.window else { return }
+            initialTouchLocation = firstTouch.locationInView(window)
             state = .Began
         }
         
         override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent) {
-            guard let firstTouch = touches.first else { return }
-            let touchLocation = firstTouch.locationInView(view)
+            guard let firstTouch = touches.first, let window = view?.window else { return }
+            let touchLocation = firstTouch.locationInView(window)
             let offset = CGPoint(x: initialTouchLocation.x - touchLocation.x, y: initialTouchLocation.y - touchLocation.y)
             if abs(offset.x) > maximumOffset.x || abs(offset.y) > maximumOffset.y {
                 state = .Failed
@@ -132,6 +136,16 @@ extension MCButtoneer {
         
         override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
             state = .Cancelled
+        }
+        
+        // MARK: - The following is so that it both cannot be prevented and cannot prevent, say, UIScrollView 
+        
+        override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return false
+        }
+        
+        override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return false
         }
     }
 }
