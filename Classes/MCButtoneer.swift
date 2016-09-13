@@ -13,9 +13,9 @@ import UIKit.UIGestureRecognizerSubclass
 /// Buttoneer converts any view into a button
 class MCButtoneer {
     /// Duration of the default animation
-    private let animationDutation: NSTimeInterval = 0.1
+    fileprivate let animationDutation: TimeInterval = 0.1
     /// Alpha of the view when depressed
-    private let depressedAlpha: CGFloat = 0.6
+    fileprivate let depressedAlpha: CGFloat = 0.6
     
     /// Custom gesture recognizer to capture presses
     let gestureRecognizer = GestureRecognizer()
@@ -46,7 +46,7 @@ class MCButtoneer {
      
      **Note:** does not, currently, work!
      */
-    convenience init(view: UIView, action: ((buttoneer: MCButtoneer) -> Void)) {
+    convenience init(view: UIView, action: @escaping ((_ buttoneer: MCButtoneer) -> Void)) {
         self.init()
         self.view = view
         self.action = action
@@ -55,20 +55,20 @@ class MCButtoneer {
     }
     
     /// Function to be executed when the button is pressed
-    var onPress: ((buttoneer: MCButtoneer) -> Void)?
+    var onPress: ((_ buttoneer: MCButtoneer) -> Void)?
     /// Function to be executed when the button is released
-    var onRelease: ((buttoneer: MCButtoneer) -> Void)?
+    var onRelease: ((_ buttoneer: MCButtoneer) -> Void)?
     /// Function to be executed when the button is clicked
-    var action: ((buttoneer: MCButtoneer) -> Void)?
+    var action: ((_ buttoneer: MCButtoneer) -> Void)?
     
     /// Unless *onPress* is set, this function will be called  when the button is pressed
     func defaultPress() {
-        UIView.animateWithDuration(animationDutation, animations: { [unowned self] in self.view.alpha = self.depressedAlpha })
+        UIView.animate(withDuration: animationDutation, animations: { [unowned self] in self.view.alpha = self.depressedAlpha })
     }
     
     /// Unless *onRelease* is set, this function will be called  when the button is released
     func defaultRelease() {
-        UIView.animateWithDuration(animationDutation, animations: { [unowned self] in self.view.alpha = 1 })
+        UIView.animate(withDuration: animationDutation, animations: { [unowned self] in self.view.alpha = 1 })
     }
     
     /// Unless *action* is set, this function will be called  when the button is pressed
@@ -76,24 +76,24 @@ class MCButtoneer {
         NSLog("ButtonManager.defaultAction()")
     }
     
-    @objc private func onGesture(recognizer: GestureRecognizer) {
+    @objc fileprivate func onGesture(_ recognizer: GestureRecognizer) {
         switch(recognizer.state) {
-        case .Began:
+        case .began:
             if let onPress = onPress {
-                onPress(buttoneer: self)
+                onPress(self)
             } else {
                 defaultPress()
             }
-        case .Ended:
+        case .ended:
             if let action = action {
-                action(buttoneer: self)
+                action(self)
             } else {
                 defaultAction()
             }
             fallthrough
-        case .Cancelled, .Failed:
+        case .cancelled, .failed:
             if let onRelease = onRelease {
-                onRelease(buttoneer: self)
+                onRelease(self)
             } else {
                 defaultRelease()
             }
@@ -112,39 +112,39 @@ class MCButtoneer {
 
 extension MCButtoneer {
     class GestureRecognizer: UIGestureRecognizer {
-        private var initialTouchLocation = CGPointZero
-        private let maximumOffset = CGPoint(x: 20, y: 20)
+        fileprivate var initialTouchLocation = CGPoint.zero
+        fileprivate let maximumOffset = CGPoint(x: 20, y: 20)
         
-        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
             guard let firstTouch = touches.first, let window = view?.window else { return }
-            initialTouchLocation = firstTouch.locationInView(window)
-            state = .Began
+            initialTouchLocation = firstTouch.location(in: window)
+            state = .began
         }
         
-        override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent) {
+        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
             guard let firstTouch = touches.first, let window = view?.window else { return }
-            let touchLocation = firstTouch.locationInView(window)
+            let touchLocation = firstTouch.location(in: window)
             let offset = CGPoint(x: initialTouchLocation.x - touchLocation.x, y: initialTouchLocation.y - touchLocation.y)
             if abs(offset.x) > maximumOffset.x || abs(offset.y) > maximumOffset.y {
-                state = .Failed
+                state = .failed
             }
         }
         
-        override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent) {
-            state = .Ended
+        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+            state = .ended
         }
         
-        override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
-            state = .Cancelled
+        override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+            state = .cancelled
         }
         
         // MARK: - The following is so that it both cannot be prevented and cannot prevent, say, UIScrollView 
         
-        override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+        override func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
             return false
         }
         
-        override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+        override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
             return false
         }
     }

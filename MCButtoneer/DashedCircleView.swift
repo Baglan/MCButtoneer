@@ -15,10 +15,10 @@ import UIKit
     @IBInspectable var dashSize: CGFloat = 1 { didSet { setNeedsDisplay() } }
     @IBInspectable var gapSize: CGFloat = 4 { didSet { setNeedsDisplay() } }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
-        let center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let shortestSize = min(bounds.width, bounds.height)
         let radius = (shortestSize - strokeWidth - 2) / 2
         
