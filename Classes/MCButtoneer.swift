@@ -106,7 +106,7 @@ class MCButtoneer {
         onPress = nil
         onRelease = nil
         action = nil
-        view.removeGestureRecognizer(gestureRecognizer)
+        gestureRecognizer.view?.removeGestureRecognizer(gestureRecognizer)
     }
 }
 
