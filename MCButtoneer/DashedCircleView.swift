@@ -22,11 +22,11 @@ import UIKit
         let shortestSize = min(bounds.width, bounds.height)
         let radius = (shortestSize - strokeWidth - 2) / 2
         
-        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
         path.lineWidth = strokeWidth
         
         // Dashes
-        let length = CGFloat(M_PI) * radius * 2
+        let length = CGFloat.pi * radius * 2
         let numberOfSegments = Int(round(length / (dashSize + gapSize)))
         let sizeRatio = length / ((dashSize + gapSize) * CGFloat(numberOfSegments))
         let actualDashSize = dashSize * sizeRatio
